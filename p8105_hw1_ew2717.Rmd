@@ -5,26 +5,24 @@ date: "9/23/2021"
 output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+library(tidyverse)
 ```
 
-## R Markdown
+```{r}
+set.seed(10)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+data_table = tibble(
+  my_variable = rnorm(10),
+  logical_vec = my_variable > 0,
+  ten_char_vector = c("c", "h", "a", "r", "a", "c", "t", "e", "r", "s"),
+  three_levels = factor(c("one", "two", "three", "three", "two", "one", "one", "one", "three", "three"))
+)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+mean(pull(data_table,my_variable))
+mean(pull(data_table,ten_char_vector))
+mean(pull(data_table,three_levels))
 
-```{r cars}
-summary(cars)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+The random sample size 10 from a standard normal distribution works because it is quantitative data, while the character vector of length 10 and factor vector of length 10 do not work because they contain qualitative data.
