@@ -5,7 +5,7 @@ date: "9/23/2021"
 output: github_document
 ---
 
-#Problem 1
+# Problem 1
 
 ```{r}
 library(tidyverse)
@@ -25,15 +25,23 @@ mean(pull(data_table,my_variable))
 mean(pull(data_table,ten_char_vector))
 mean(pull(data_table,three_levels))
 
+converted_num1 = as.numeric(pull(data_table, logical_vec))
+converted_num2 = as.numeric(pull(data_table, ten_char_vector))
+converted_num3 = as.numeric(pull(data_table, three_levels))
+
+mean(converted_num1)
+mean(converted_num2)
+mean(converted_num3)
+
 ```
 
 The random sample size 10 from a standard normal distribution works because it is quantitative data, while the character vector of length 10 and factor vector of length 10 do not work because they contain qualitative data.
 
-#Problem 2
+# Problem 2
 
 ```{r}
 
-install.packages("palmerpenguins")
+##install.packages("palmerpenguins")
 
 ```
 
@@ -54,7 +62,10 @@ ncol(penguins)
 
 ## The mean flipper length is 201.
 
-plot(flippe)
+ggplot(penguins, aes(x = flipper_length_mm, y = bill_length_mm, color = species)) + geom_point()
+
+
+ggsave("scatter_plot.pdf", plot = last_plot(), height = 4, width = 6)
 
 ```
 
