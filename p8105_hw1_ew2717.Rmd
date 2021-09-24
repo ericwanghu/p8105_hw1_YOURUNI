@@ -7,7 +7,7 @@ output: github_document
 
 # Problem 1
 
-```{r}
+```{r include = FALSE}
 library(tidyverse)
 ```
 
@@ -21,13 +21,27 @@ data_table = tibble(
   three_levels = factor(c("one", "two", "three", "three", "two", "one", "one", "one", "three", "three"))
 )
 
+data_table
+```
+
+```{r finding mean}
+
+
 mean(pull(data_table,my_variable))
 mean(pull(data_table,ten_char_vector))
 mean(pull(data_table,three_levels))
 
+```
+
+```{r converting to numeric}
+
 converted_num1 = as.numeric(pull(data_table, logical_vec))
 converted_num2 = as.numeric(pull(data_table, ten_char_vector))
 converted_num3 = as.numeric(pull(data_table, three_levels))
+
+```
+
+```{r finding converted mean}
 
 mean(converted_num1)
 mean(converted_num2)
@@ -39,15 +53,14 @@ The random sample size 10 from a standard normal distribution works because it i
 
 # Problem 2
 
-```{r}
 
-##install.packages("palmerpenguins")
+```{r load dataset}
+
+data("penguins", package = "palmerpenguins")
 
 ```
 
-```{r}
-
-data("penguins", package = "palmerpenguins")
+```{r output summary and row and col information}
 
 skimr::skim(penguins)
 
@@ -62,10 +75,13 @@ ncol(penguins)
 
 ## The mean flipper length is 201.
 
+```
+
+```{r create and output scatter plot}
+
 ggplot(penguins, aes(x = flipper_length_mm, y = bill_length_mm, color = species)) + geom_point()
 
-
-ggsave("scatter_plot.pdf", plot = last_plot(), height = 4, width = 6)
+ggsave("penguin_scatter_plot.pdf", plot = last_plot(), height = 4, width = 6)
 
 ```
 
