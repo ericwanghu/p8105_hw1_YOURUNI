@@ -5,6 +5,8 @@ date: "9/23/2021"
 output: github_document
 ---
 
+#Problem 1
+
 ```{r}
 library(tidyverse)
 ```
@@ -26,3 +28,43 @@ mean(pull(data_table,three_levels))
 ```
 
 The random sample size 10 from a standard normal distribution works because it is quantitative data, while the character vector of length 10 and factor vector of length 10 do not work because they contain qualitative data.
+
+#Problem 2
+
+```{r}
+
+install.packages("palmerpenguins")
+
+```
+
+```{r}
+
+data("penguins", package = "palmerpenguins")
+
+skimr::skim(penguins)
+
+names(penguins)
+
+## The important values in this data set have the names species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, and year. The values of important variables includes an average of 43.9mm for bill length, 17.2mm for bill depth, 201mm for flipper length, 4202g for body mass, and 2008 for year.
+
+nrow(penguins)
+ncol(penguins)
+
+## There are 344 rows and 8 columns in this data set.
+
+## The mean flipper length is 201.
+
+plot(flippe)
+
+```
+
+
+
+
+
+
+
+
+
+
+
