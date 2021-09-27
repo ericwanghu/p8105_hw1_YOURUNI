@@ -65,35 +65,23 @@ After converting logical_vec, ten_char_vector, and three_levels to numeric value
 
 ```{r load penguin dataset}
 
+library(palmerpenguins)
 data("penguins", package = "palmerpenguins")
 
 ```
 
-a) The names in this data set are: 
+The names in this data set are: 
 `r names(penguins)`.
 
-b) The unique *species* in the data set are: 
+The unique *species* in the data set are: 
 `r unique(penguins$species)`.
 
-c) The unique *island* in the data set are: 
-`r unique(penguins$island`.
+The unique *islands* in the data set are: 
+`r unique(penguins$island)`.
 
-d) The unique *years* in the data set are: 
-`r unique(penguins$year, na.rm = TRUE`.
+The unique *years* in the data set are: 
+`r unique(penguins$year, na.rm = TRUE)`.
 
-```{r create scatter plot}
+The *sex* of the penguins in the data set are: 
+`r unique(na.omit(penguins$sex))`.
 
-ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
-ggtitle("Flipper versus Bill Length")
-
-```
-
-This is the scatter plot for Flippter versus Bill Length.
-
-```{r}
-
-ggsave("penguin_scatter_plot.pdf", plot = last_plot(), height = 4, width = 6)
-
-```
-
-This saves the scatter plot as a pdf file names penguin_scatter_plot.
