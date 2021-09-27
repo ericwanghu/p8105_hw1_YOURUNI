@@ -120,7 +120,7 @@ summary(pull(penguins,flipper_length_mm))
 
 As seen above, the mean flipper length is 200.9, which is rounded to `r round(mean(penguins$flipper_length_mm, na.rm = TRUE))`.
 
-There are `r nrow(penguins)` *rows* and `r ncol(penguins)` columns in this data set.
+There are `r nrow(penguins)` *rows* and `r ncol(penguins)` *columns* in this data set.
 
 ```{r create scatter plot}
 
