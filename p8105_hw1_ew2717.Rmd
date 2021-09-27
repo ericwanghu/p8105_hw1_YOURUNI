@@ -85,3 +85,56 @@ The unique *years* in the data set are:
 The *sex* of the penguins in the data set are: 
 `r unique(na.omit(penguins$sex))`.
 
+Important variables for *bill length* are shown in the table:
+
+```{r, echo = FALSE}
+
+summary(pull(penguins,bill_length_mm))
+        
+```
+
+Important variables for *bill depth* are shown in the table:
+
+```{r, echo = FALSE}
+
+summary(pull(penguins,bill_depth_mm))
+        
+```
+
+
+Important variables for *body mass* are shown in the table:
+
+```{r, echo = FALSE}
+
+summary(pull(penguins,body_mass_g))
+        
+```
+
+Important variables for *flipper length* are shown in the table:
+
+```{r, echo = FALSE}
+
+summary(pull(penguins,flipper_length_mm))
+        
+```
+
+As seen above, the mean flipper length is 200.9, which is rounded to `r round(mean(penguins$flipper_length_mm, na.rm = TRUE))`.
+
+There are `r nrow(penguins)` *rows* and `r ncol(penguins)` columns in this data set.
+
+```{r create scatter plot}
+
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+ggtitle("Flipper versus Bill Length")
+
+```
+
+This is the scatter plot for Flippter versus Bill Length.
+
+```{r}
+
+ggsave("penguin_scatter_plot.pdf", plot = last_plot(), height = 4, width = 6)
+
+```
+
+This saves the scatter plot as a pdf file names penguin_scatter_plot.
