@@ -129,7 +129,7 @@ ggtitle("Flipper versus Bill Length")
 
 ```
 
-This is the scatter plot for Flippter versus Bill Length.
+This is the scatter plot for Flipper versus Bill Length.
 
 ```{r}
 
