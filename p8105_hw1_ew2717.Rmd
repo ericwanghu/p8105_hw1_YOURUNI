@@ -1,20 +1,25 @@
 ---
 title: "p8105_hw1_ew2717"
 author: "Eric Wang"
-date: "9/23/2021"
 output: github_document
 ---
 
-# Problem 1
-
 ```{r include = FALSE}
+
 library(tidyverse)
+library(ggplot2)
+
 ```
 
-```{r}
+## Problem 1
+
+
+
+```{r creating data frame}
+
 set.seed(10)
 
-data_table = tibble(
+data_table <- tibble(
   my_variable = rnorm(10),
   logical_vec = my_variable > 0,
   ten_char_vector = c("c", "h", "a", "r", "a", "c", "t", "e", "r", "s"),
@@ -24,22 +29,26 @@ data_table = tibble(
 data_table
 ```
 
-```{r finding mean}
+```{r finding mean of the variables}
 
-
-mean(pull(data_table,my_variable))
-mean(pull(data_table,ten_char_vector))
-mean(pull(data_table,three_levels))
+mean(pull(data_table, my_variable))
+mean(pull(data_table, logical_vec))
+mean(pull(data_table, ten_char_vector))
+mean(pull(data_table, three_levels))
 
 ```
 
-```{r converting to numeric}
+The mean of my_variable and logical_vec can be calculated because they are numeric and logical vectors. ten_char_vector and three_levels, however, cannot have their means calculated because they are character and factor vectors.
+
+```{r converting to variables to numeric, message = FALSE, warning = FALSE}
 
 converted_num1 = as.numeric(pull(data_table, logical_vec))
 converted_num2 = as.numeric(pull(data_table, ten_char_vector))
 converted_num3 = as.numeric(pull(data_table, three_levels))
 
 ```
+
+The logical and factor vectors can be converted to numeric values, while the character value cannot be converted. We are unable to convert characters or letters to numbers. For the logical vector, we are able to convert it to numeric because 1 can represent TRUE and 0 can represent FALSE. 
 
 ```{r finding converted mean}
 
@@ -49,49 +58,42 @@ mean(converted_num3)
 
 ```
 
-The random sample size 10 from a standard normal distribution works because it is quantitative data, while the character vector of length 10 and factor vector of length 10 do not work because they contain qualitative data.
+After converting logical_vec, ten_char_vector, and three_levels to numeric values, it is found that only ten_char_vector cannot be converted. I could not convert the chracater vector into numeric variables. 
 
 # Problem 2
 
 
-```{r load dataset}
+```{r load penguin dataset}
 
 data("penguins", package = "palmerpenguins")
 
 ```
 
-```{r output summary and row and col information}
+a) The names in this data set are: 
+`r names(penguins)`.
 
-skimr::skim(penguins)
+b) The unique *species* in the data set are: 
+`r unique(penguins$species)`.
 
-names(penguins)
+c) The unique *island* in the data set are: 
+`r unique(penguins$island`.
 
-## The important values in this data set have the names species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, and year. The values of important variables includes an average of 43.9mm for bill length, 17.2mm for bill depth, 201mm for flipper length, 4202g for body mass, and 2008 for year.
+d) The unique *years* in the data set are: 
+`r unique(penguins$year, na.rm = TRUE`.
 
-nrow(penguins)
-ncol(penguins)
+```{r create scatter plot}
 
-## There are 344 rows and 8 columns in this data set.
-
-## The mean flipper length is 201.
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+ggtitle("Flipper versus Bill Length")
 
 ```
 
-```{r create and output scatter plot}
+This is the scatter plot for Flippter versus Bill Length.
 
-ggplot(penguins, aes(x = flipper_length_mm, y = bill_length_mm, color = species)) + geom_point()
+```{r}
 
 ggsave("penguin_scatter_plot.pdf", plot = last_plot(), height = 4, width = 6)
 
 ```
 
-
-
-
-
-
-
-
-
-
-
+This saves the scatter plot as a pdf file names penguin_scatter_plot.
