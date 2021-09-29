@@ -13,7 +13,7 @@ library(ggplot2)
 
 ## Problem 1
 
-
+#### Creating a data frame that consists of numeric, logical, character, and factor vectors.
 
 ```{r creating data frame}
 
@@ -29,7 +29,9 @@ data_table <- tibble(
 data_table
 ```
 
-```{r finding mean of the variables, message = FALSE, warning = FALSE}
+#### Attempting to take the means of the variables
+
+```{r finding mean of the variables}
 
 mean(pull(data_table, my_variable))
 mean(pull(data_table, logical_vec))
@@ -40,6 +42,8 @@ mean(pull(data_table, three_levels))
 
 The mean of my_variable and logical_vec can be calculated because they are numeric and logical vectors. ten_char_vector and three_levels, however, cannot have their means calculated because they are character and factor vectors.
 
+#### Converting logicial, character, and factor variables using as.numeric without showing the outputs
+
 ```{r converting to variables to numeric, message = FALSE, warning = FALSE}
 
 converted_num1 = as.numeric(pull(data_table, logical_vec))
@@ -48,7 +52,7 @@ converted_num3 = as.numeric(pull(data_table, three_levels))
 
 ```
 
-The logical and factor vectors can be converted to numeric values, while the character value cannot be converted. We are unable to convert characters or letters to numbers. For the logical vector, we are able to convert it to numeric because 1 can represent TRUE and 0 can represent FALSE. 
+#### Finding the means of the converted variables
 
 ```{r finding converted mean}
 
@@ -58,10 +62,13 @@ mean(converted_num3)
 
 ```
 
-After converting logical_vec, ten_char_vector, and three_levels to numeric values, it is found that only ten_char_vector cannot be converted. I could not convert the chracater vector into numeric variables. 
+The logical and factor vectors can be converted to numeric values, while the character value cannot be converted. We are unable to convert characters or letters to numbers. For the logical vector, we are able to convert it to numeric because 1 can represent TRUE and 0 can represent FALSE. 
 
-# Problem 2
+After converting logical_vec, ten_char_vector, and three_levels to numeric values, it is found that only ten_char_vector cannot be converted. I could not convert the character vector into numeric variables. 
 
+## Problem 2
+
+#### Loading up the penguin data set
 
 ```{r load penguin dataset}
 
@@ -69,6 +76,8 @@ library(palmerpenguins)
 data("penguins", package = "palmerpenguins")
 
 ```
+
+#### Finding the names and important variables from the data set
 
 The names in this data set are: 
 `r names(penguins)`.
@@ -124,8 +133,7 @@ There are `r nrow(penguins)` *rows* and `r ncol(penguins)` *columns* in this dat
 
 ```{r create scatter plot, message = FALSE, warning = FALSE}
 
-ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
-ggtitle("Flipper versus Bill Length")
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() + ggtitle("Flipper versus Bill Length")
 
 ```
 
