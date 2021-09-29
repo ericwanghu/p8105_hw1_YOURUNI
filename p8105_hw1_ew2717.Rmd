@@ -77,7 +77,7 @@ data("penguins", package = "palmerpenguins")
 
 ```
 
-#### Finding the names and important variables from the data set
+#### Finding the names and the important variables from the data set
 
 The names in this data set are: 
 `r names(penguins)`.
@@ -94,42 +94,17 @@ The unique *years* in the data set are:
 The *sex* of the penguins in the data set are: 
 `r unique(na.omit(penguins$sex))`.
 
-Important variables for *bill length* are shown in the table:
+The mean for *bill length* is `r round(mean(pull(penguins, bill_length_mm), na.rm = TRUE), digits = 2)`mm, while the standard deviation is `r round(sd(pull(penguins, bill_length_mm), na.rm = TRUE), digits = 2)`.
 
-```{r, echo = FALSE}
+The mean for *bill depth* is `r round(mean(pull(penguins, bill_depth_mm), na.rm = TRUE), digits = 2)`mm, while the standard deviation is `r round(sd(pull(penguins, bill_depth_mm), na.rm = TRUE), digits=2)`.
 
-summary(pull(penguins,bill_length_mm))
-        
-```
+The mean for *body mass* is `r round(mean(pull(penguins, body_mass_g), na.rm = TRUE), digits=2)`mm, while the standard deviation is `r round(sd(pull(penguins, body_mass_g), na.rm = TRUE), digits=2)`.
 
-Important variables for *bill depth* are shown in the table:
-
-```{r, echo = FALSE}
-
-summary(pull(penguins,bill_depth_mm))
-        
-```
-
-
-Important variables for *body mass* are shown in the table:
-
-```{r, echo = FALSE}
-
-summary(pull(penguins,body_mass_g))
-        
-```
-
-Important variables for *flipper length* are shown in the table:
-
-```{r, echo = FALSE}
-
-summary(pull(penguins,flipper_length_mm))
-        
-```
-
-As seen above, the mean flipper length is 200.9, which is rounded to `r round(mean(penguins$flipper_length_mm, na.rm = TRUE))`.
+The mean for *flipper length* is `r round(mean(pull(penguins, flipper_length_mm),na.rm = TRUE))`mm, while the standard deviation is `r round(sd(pull(penguins, flipper_length_mm), na.rm = TRUE), digits=2)`.
 
 There are `r nrow(penguins)` *rows* and `r ncol(penguins)` *columns* in this data set.
+
+#### Creating a scatter plot
 
 ```{r create scatter plot, message = FALSE, warning = FALSE}
 
@@ -139,7 +114,9 @@ ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)
 
 This is the scatter plot for Flipper versus Bill Length.
 
-```{r, message = FALSE, warning = FALSE}
+#### Saving the scatter plot
+
+```{r save scatter plot, message = FALSE, warning = FALSE}
 
 ggsave("penguin_scatter_plot.pdf", plot = last_plot(), height = 4, width = 6)
 
